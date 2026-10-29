@@ -1,0 +1,19 @@
+name = "contesthunt-scraper-orchestrator"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+workers_dev = false          # scheduled-only Worker: no public URL
+
+[triggers]
+# UTC. Tick every 15 min from 02:00 to 06:45. The first tick (02:00) starts the day's run;
+# later ticks only reconcile (skip if succeeded/active, retry after cool-down if failed).
+# For a strictly single daily invocation use: crons = ["0 2 * * *"]
+crons = ["*/15 2-6 * * *"]
+
+[vars]
+BACKEND_URL = "https://YOUR-RENDER-SERVICE.onrender.com"   # must be https; no trailing path
+RETRY_BASE_DELAY_MINUTES = "5"                               # cool-down after a failed run: 5, 10, 20 ...
+
+[observability]
+enabled = true
+
+# Secret (NOT in this file):  wrangler secret put SCRAPER_TRIGGER_SECRET
