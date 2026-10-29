@@ -10,7 +10,7 @@ workers_dev = false          # scheduled-only Worker: no public URL
 crons = ["*/15 2-6 * * *"]
 
 [vars]
-BACKEND_URL = "https://YOUR-RENDER-SERVICE.onrender.com"   # must be https; no trailing path
+BACKEND_URL = "https://klaxonv2.onrender.com"   # must be https; no trailing path
 RETRY_BASE_DELAY_MINUTES = "5"                               # cool-down after a failed run: 5, 10, 20 ...
 
 [observability]
